@@ -22,7 +22,7 @@ user = y1
 
 [ssh]
 remote_port = 
-type = tco
+type = tcp
 local_ip = 192.168.99.1
 local_port = 22
 remark= ssh
