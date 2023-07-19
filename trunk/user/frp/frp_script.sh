@@ -8,22 +8,31 @@ mkdir -p /tmp/frp
 # IP查询： http://119.29.29.29/d?dn=github.com
 
 cat > "/tmp/frp/myfrpc.ini" <<-\EOF
+
 # ==========客户端配置：==========
 [common]
-server_addr = 1192.0.0.3
-server_port = 7000
-token = 12345
+server_addr = n.raywan.com
+server_port = 5443
+token = pieQjncZlS78Qrkt
+user = y1
 
 #log_file = /dev/null
 #log_level = info
 #log_max_days = 3
 
+[ssh]
+remote_port = 
+type = tco
+local_ip = 192.168.99.1
+local_port = 22
+remark= ssh
+
 [web]
-remote_port = 6000
+remote_port = 
 type = http
-local_ip = 192.168.2.1
+local_ip = 192.168.99.1
 local_port = 80
-subdomain = test
+subdomain = y1
 #host_header_rewrite = 实际你内网访问的域名，可以供公网的域名不一致，如果一致可以不写
 # ====================
 EOF
