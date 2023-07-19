@@ -2,7 +2,8 @@
 frpc_enable=`nvram get frpc_enable`
 frps_enable=`nvram get frps_enable`
 http_username=`nvram get http_username`
-
+mac=''`cat /sys/class/net/eth2/address  | awk -F: '{print $1$2$3$4$5$6}'| tr '[a-z]''[A-Z]'`
+sed -i "s/y1/"$subdomain"/g"  /etc/storage/frp_script.sh
 check_frp () 
 {
 	check_net
