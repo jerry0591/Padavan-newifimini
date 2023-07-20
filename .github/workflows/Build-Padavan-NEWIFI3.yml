@@ -25,10 +25,9 @@ jobs:
       env:
         KERNEL: 3.4
       run: |
-        git clone --depth=1 https://github.com/jerry0591/Padavan-newifimini.git /opt/rt-n56u
+        git clone --depth=1 https://github.com/fightroad/Padavan-KVR.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
-        rm -rf /opt/images/
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
@@ -44,10 +43,9 @@ jobs:
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
+        
         sed -i '/CONFIG_FIRMWARE_INCLUDE_ZEROTIER/d' .config #删除配置项zerotier
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config #删除配置项SHADOWSOCKS
-        #sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config
+        
         ######################################################################
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
         ######################################################################
@@ -55,8 +53,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
         echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SHADOWSOCKS 
         #echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config 
-        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config  
-        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config 
         
         #########################################################################################
         #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
@@ -71,5 +68,5 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: newifi3
+        name: Padavan-packages
         path: /opt/images
