@@ -28,6 +28,7 @@ jobs:
         git clone --depth=1 https://github.com/jerry0591/Padavan-newifimini.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
+        rm -rf /opt/images/
         mkdir -p /opt/images/
     - name: Build Firmware
       env:
