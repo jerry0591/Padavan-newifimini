@@ -24,6 +24,7 @@ clean:
 romfs:
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_FRPC),y)
 	$(ROMFSINST) -p +x $(THISDIR)/$(FRP_NAME)/frpc /usr/bin/frpc
+	$(ROMFSINST) -p +x $(THISDIR)/frpc.sh /etc/storage/frpc.sh
 endif
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_FRPS),y)
 	$(ROMFSINST) -p +x $(THISDIR)/$(FRP_NAME)/frps /usr/bin/frps
